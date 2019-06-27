@@ -1,9 +1,9 @@
 package com.futao.springbootlearn.thymeleaf.controller;
 
 import com.futao.springbootlearn.thymeleaf.model.Book;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Created on 2019-06-27.
  */
 @RequestMapping("/book")
-@RestController
+@Controller
 public class BookController {
 
     @GetMapping("/books")
