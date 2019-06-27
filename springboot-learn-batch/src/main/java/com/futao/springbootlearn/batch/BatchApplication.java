@@ -1,7 +1,6 @@
-package com.futao.springbootlearnbatch;
+package com.futao.springbootlearn.batch;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -18,6 +17,7 @@ import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 
@@ -26,11 +26,12 @@ import java.io.File;
 
 @EnableBatchProcessing
 @SpringBootApplication
-public class SpringbootLearnBatchApplication {
+public class BatchApplication {
 
     public static void main(String[] args) {
         System.setProperty("input", "file://" + new File("/Users/futao/Desktop/springBatch.csv").getAbsolutePath());
-        SpringApplication.run(SpringbootLearnBatchApplication.class, args);
+        ConfigurableApplicationContext run = SpringApplication.run(BatchApplication.class, args);
+        System.out.println("----------success:" + run.getClass().getName());
     }
 
 
