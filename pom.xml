@@ -33,6 +33,7 @@
         <module>springboot-learn-api</module>
         <module>springboot-learn-static-resources</module>
         <module>springboot-learn-file-upload</module>
+        <module>springboot-learn-enhance</module>
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->
