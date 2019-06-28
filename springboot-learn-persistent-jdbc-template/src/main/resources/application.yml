@@ -1,0 +1,17 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: jdbc-template
+  datasource:
+    url: jdbc:mysql://localhost:3306/springboot_learn_persistent_jdbc_template?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456789
+#    driver-class-name: com.alibaba.druid.proxy.DruidDriver
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    druid:
+#      min-idle: 10
+#      max-active: 20
+#      validation-query: select 1;
+debug: false
