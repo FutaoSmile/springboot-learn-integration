@@ -70,3 +70,4 @@ out
 dump.rdb
 *.log
 /bin/
+/singleFileUpload/

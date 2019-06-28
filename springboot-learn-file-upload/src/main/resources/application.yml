@@ -1,0 +1,14 @@
+server:
+  port: 8060
+spring:
+  application:
+    name: file-upload
+  servlet:
+    multipart:
+      enabled: true   # 开启文件上传
+      max-file-size: 10GB
+      resolve-lazily: true
+      max-request-size: 100GB
+
+
+#singleFileUploadPath: /Users/futao/src/backend/fun/springboot-learn-integration/springboot-learn-file-upload/src/main/resources/singleFileUpload
