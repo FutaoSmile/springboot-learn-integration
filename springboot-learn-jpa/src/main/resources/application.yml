@@ -14,6 +14,11 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
     open-in-view: true
   datasource:
-    url: jdbc:mysql://localhost:3306/springboot_learn_persistent_jpa?useUnicode=true&characterEncoding=utf8
-    username: root
-    password: 123456789
+    one:
+      url: jdbc:mysql://localhost:3306/springboot_learn_persistent_jpa?useUnicode=true&characterEncoding=utf8
+      username: root
+      password: 123456789
+    two:
+      url: jdbc:mysql://localhost:3306/springboot_learn_persistent_jpa_two?useUnicode=true&characterEncoding=utf8
+      username: root
+      password: 123456789

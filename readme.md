@@ -45,10 +45,14 @@
 ### # springboot-learn-persistent-jdbc-template
 * 数据持久化-jdbcTemplate
 * jdbcTemplate-多数据源
+* 粒度:
+    * 每一条sql语句都可以选择某个数据源，粒度很细
 
 ### # springboot-learn-mybatis
 * 数据持久化-mybatis
 * mybatis-多数据源
+* 粒度
+    * 可以给某个包下所有的mapper配置一个数据源
 
 ### # springboot-learn-jpa
 * 注解式数据持久化-jpa

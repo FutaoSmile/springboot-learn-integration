@@ -21,7 +21,7 @@ import javax.sql.DataSource;
  * Created on 2019-06-28.
  */
 @Configuration
-public class Config {
+public class BeanConfig {
 
     @Bean("dataSourceOne")
     @ConfigurationProperties(prefix = "spring.datasource.one")
