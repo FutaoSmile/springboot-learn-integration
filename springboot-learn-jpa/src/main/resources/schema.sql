@@ -1,0 +1,1 @@
+create database `springboot_learn_persistent_jpa` character set utf8mb4;
