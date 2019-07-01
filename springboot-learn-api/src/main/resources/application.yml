@@ -1,8 +1,8 @@
 server:
-  port: 8850
+  port: 8050
 spring:
   application:
-    name: api
+    name: learn-api
   http:
     encoding:
       force-response: true

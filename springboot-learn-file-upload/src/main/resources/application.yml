@@ -2,7 +2,7 @@ server:
   port: 8060
 spring:
   application:
-    name: file-upload
+    name: learn-file-upload
   servlet:
     multipart:
       enabled: true   # 开启文件上传

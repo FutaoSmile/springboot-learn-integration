@@ -1,0 +1,10 @@
+server:
+  port: 8100
+spring:
+  application:
+    name: learn-mybatis
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/springboot_learn_persistent_mybatis?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456789

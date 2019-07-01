@@ -24,6 +24,9 @@
         <java.version>1.8</java.version>
         <project.buildsourceEncoding>UTF-8</project.buildsourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <version.mybatis>2.0.0</version.mybatis>
+        <version.druid>1.1.10</version.druid>
+        <version.fastjson>1.2.56</version.fastjson>
     </properties>
     <modules>
         <module>springboot-learn-batch</module>
@@ -35,6 +38,7 @@
         <module>springboot-learn-file-upload</module>
         <module>springboot-learn-enhance</module>
         <module>springboot-learn-persistent-jdbc-template</module>
+        <module>springboot-learn-mybatis</module>
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->
@@ -51,12 +55,17 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
-                <version>1.2.56</version>
+                <version>${version.fastjson}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
-                <version>1.1.10</version>
+                <version>${version.druid}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${version.mybatis}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

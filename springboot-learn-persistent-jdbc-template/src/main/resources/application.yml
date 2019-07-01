@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: jdbc-template
+    name: learn-jdbc-template
   datasource:
     url: jdbc:mysql://localhost:3306/springboot_learn_persistent_jdbc_template?useUnicode=true&characterEncoding=utf8
     username: root
