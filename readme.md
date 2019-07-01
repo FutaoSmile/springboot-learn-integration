@@ -1,5 +1,5 @@
 ```xml
-  <modules>
+     <modules>
          <module>springboot-learn-batch</module>
          <module>springboot-learn-server</module>
          <module>springboot-learn-thymeleaf</module>
@@ -8,6 +8,9 @@
          <module>springboot-learn-static-resources</module>
          <module>springboot-learn-file-upload</module>
          <module>springboot-learn-enhance</module>
+         <module>springboot-learn-persistent-jdbc-template</module>
+         <module>springboot-learn-mybatis</module>
+         <module>springboot-learn-jpa</module>
      </modules>
 ```
 
@@ -38,3 +41,19 @@
 > SpringBoot增强
 * HandlerInterceptor    拦截器
 * 切面                    AOP
+
+### # springboot-learn-persistent-jdbc-template
+* 数据持久化-jdbcTemplate
+* jdbcTemplate-多数据源
+
+### # springboot-learn-mybatis
+* 数据持久化-mybatis
+* mybatis-多数据源
+
+### # springboot-learn-jpa
+* 注解式数据持久化-jpa
+* jpa-多数据源
+
+
+## TODO
+* MyCat读写分离，分库分表
