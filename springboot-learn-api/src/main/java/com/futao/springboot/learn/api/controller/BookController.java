@@ -19,4 +19,5 @@ public class BookController {
     public Book book() {
         return new Book("1", "futao", "当幸福来敲门", new Date());
     }
+
 }

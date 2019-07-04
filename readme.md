@@ -27,8 +27,9 @@
 > 在SpringBoot中使用模板引擎-freemarker
 
 ### # springboot-learn-api
-> 自定义消息转换器httpMessageConvert
 > 使用Springboot提供REST api接口
+* 自定义消息转换器httpMessageConvert
+* 异步方法的使用
 
 ### # springboot-learn-static-resources
 > 在SpringBoot项目中访问静态资源
