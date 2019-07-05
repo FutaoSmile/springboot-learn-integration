@@ -40,6 +40,7 @@
         <module>springboot-learn-persistent-jdbc-template</module>
         <module>springboot-learn-mybatis</module>
         <module>springboot-learn-jpa</module>
+        <module>springboot-learn-redis</module>
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->

@@ -58,7 +58,12 @@
 ### # springboot-learn-jpa
 * 注解式数据持久化-jpa
 * ~~jpa-多数据源~~
+    * 粒度也是包级别
+
+### # springboot-learn-redis
+* 整合单机redis
 
 
 ## TODO
 * MyCat读写分离，分库分表
+* redis集群与Springboot的整合
