@@ -1,0 +1,17 @@
+server:
+  port: 8131
+
+spring:
+  application:
+    name: learn-session-share
+
+  redis:
+    host: localhost
+    port: 6379
+    database: 2
+    jedis:
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1ms
+        max-active: 8

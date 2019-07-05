@@ -63,6 +63,9 @@
 ### # springboot-learn-redis
 * 整合单机redis
 
+### # springboot-learn-session-share
+* 分布式session共享
+
 
 ## TODO
 * MyCat读写分离，分库分表

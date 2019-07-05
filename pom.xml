@@ -41,6 +41,7 @@
         <module>springboot-learn-mybatis</module>
         <module>springboot-learn-jpa</module>
         <module>springboot-learn-redis</module>
+        <module>springboot-learn-session-share</module>
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->
