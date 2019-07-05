@@ -16,6 +16,7 @@ public class AopService {
     }
 
     public String returningValue(String parameter) {
+        parameter = "niubi";
         return parameter;
     }
 

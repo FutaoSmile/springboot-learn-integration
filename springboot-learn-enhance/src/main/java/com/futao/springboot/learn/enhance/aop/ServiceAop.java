@@ -56,6 +56,7 @@ public class ServiceAop {
     public Object around(ProceedingJoinPoint point) throws Throwable {
         log.info("[AOP-around-before] {},args:{}", point.getSignature().getName(), point.getArgs());
         Object result = point.proceed();
+        log.info("[AOP-around-after] {},args:{}", point.getSignature().getName(), point.getArgs());
         log.info("[AOP-around-after] {},result:{}", point.getSignature().getName(), result);
         //这个地方需要将返回值返回，否则该被拦截的方法没有返回值，且@AfterReturning中无法拦截到返回值
         return result;
