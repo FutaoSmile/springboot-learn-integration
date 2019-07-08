@@ -15,6 +15,7 @@
             <module>springboot-learn-session-share</module>
             <module>springboot-learn-rest</module>
             <module>springboot-learn-cache-ehcache</module>
+            <module>springboot-learn-security</module>
     </modules>
 ```
 
@@ -76,6 +77,8 @@
 ### # springboot-learn-cache-ehcache
 * 使用ehcache作为缓存
 
+### # [springboot-learn-security](/springboot-learn-security)
+* 在项目中使用SpringSecurity
 
 ## TODO
 * MyCat读写分离，分库分表

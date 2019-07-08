@@ -1,0 +1,10 @@
+server:
+  port: 8160
+spring:
+  application:
+    name: learn-security
+  security:
+    user:
+      name: admin
+      password: nobug666
+      roles: admin

@@ -44,6 +44,7 @@
         <module>springboot-learn-session-share</module>
         <module>springboot-learn-rest</module>
         <module>springboot-learn-cache-ehcache</module>
+        <module>springboot-learn-security</module>
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->
