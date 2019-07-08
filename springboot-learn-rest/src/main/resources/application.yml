@@ -1,0 +1,31 @@
+server:
+  port: 8140
+
+spring:
+  application:
+    name: learn-rest
+  datasource:
+    url: jdbc:mysql://localhost:3306/springboot_learn_persistent_rest?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456789
+    type: com.alibaba.druid.pool.DruidDataSource
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database: mysql
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        engine: InnoDB
+    open-in-view: true
+  # rest的一些配置，也可以配置在代码中
+  data:
+    rest:
+      default-page-size: 2
+      page-param-name: page
+      limit-param-name: size
+      sort-param-name: sort
+      return-body-on-create: true
+      return-body-on-update: true   #是否返回更新成功后的内容
+#      base-path: /api

@@ -42,6 +42,7 @@
         <module>springboot-learn-jpa</module>
         <module>springboot-learn-redis</module>
         <module>springboot-learn-session-share</module>
+        <module>springboot-learn-rest</module>
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->

@@ -1,17 +1,20 @@
 ```xml
-     <modules>
-         <module>springboot-learn-batch</module>
-         <module>springboot-learn-server</module>
-         <module>springboot-learn-thymeleaf</module>
-         <module>springboot-learn-freemarker</module>
-         <module>springboot-learn-api</module>
-         <module>springboot-learn-static-resources</module>
-         <module>springboot-learn-file-upload</module>
-         <module>springboot-learn-enhance</module>
-         <module>springboot-learn-persistent-jdbc-template</module>
-         <module>springboot-learn-mybatis</module>
-         <module>springboot-learn-jpa</module>
-     </modules>
+    <modules>
+            <module>springboot-learn-batch</module>
+            <module>springboot-learn-server</module>
+            <module>springboot-learn-thymeleaf</module>
+            <module>springboot-learn-freemarker</module>
+            <module>springboot-learn-api</module>
+            <module>springboot-learn-static-resources</module>
+            <module>springboot-learn-file-upload</module>
+            <module>springboot-learn-enhance</module>
+            <module>springboot-learn-persistent-jdbc-template</module>
+            <module>springboot-learn-mybatis</module>
+            <module>springboot-learn-jpa</module>
+            <module>springboot-learn-redis</module>
+            <module>springboot-learn-session-share</module>
+            <module>springboot-learn-rest</module>
+      </modules>
 ```
 
 ### # springboot-learn-batch
@@ -65,6 +68,9 @@
 
 ### # springboot-learn-session-share
 * 分布式session共享
+
+### # springboot-learn-rest
+* Rest接口-不需要编写Controller
 
 
 ## TODO
