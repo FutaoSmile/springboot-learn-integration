@@ -43,6 +43,7 @@
         <module>springboot-learn-redis</module>
         <module>springboot-learn-session-share</module>
         <module>springboot-learn-rest</module>
+        <module>springboot-learn-cache-ehcache</module>
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->

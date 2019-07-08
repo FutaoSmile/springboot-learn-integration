@@ -1,0 +1,8 @@
+server:
+  port: 8150
+spring:
+  application:
+    name: learn-cache-ehcache
+  cache:
+    ehcache:
+      config: classpath:ehcache.xml

@@ -14,7 +14,8 @@
             <module>springboot-learn-redis</module>
             <module>springboot-learn-session-share</module>
             <module>springboot-learn-rest</module>
-      </modules>
+            <module>springboot-learn-cache-ehcache</module>
+    </modules>
 ```
 
 ### # springboot-learn-batch
@@ -71,6 +72,9 @@
 
 ### # springboot-learn-rest
 * Rest接口-不需要编写Controller
+
+### # springboot-learn-cache-ehcache
+* 使用ehcache作为缓存
 
 
 ## TODO
