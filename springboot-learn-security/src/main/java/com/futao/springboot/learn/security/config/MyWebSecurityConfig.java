@@ -55,12 +55,14 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //基于url的配置(使用基于注解的配置之后这段代码可以部分不需要)
+
         http
                 .authorizeRequests()
-                .antMatchers("/admin/**").hasRole("admin")
-                .antMatchers("/user/**").access("hasAnyRole('admin','user')")
-                .antMatchers("/db/**").access("hasRole('admin') and hasRole('DBA')")
-                //除了配置之外的地址都需要认证了才能访问
+//                .antMatchers("/admin/**").hasRole("admin")
+//                .antMatchers("/user/**").access("hasAnyRole('admin','user')")
+//                .antMatchers("/db/**").access("hasRole('admin') and hasRole('DBA')")
+//                //除了配置之外的地址都需要认证了才能访问
                 .anyRequest()
                 //除了配置之外的地址都需要认证了才能访问
                 .authenticated()
