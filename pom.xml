@@ -27,6 +27,7 @@
         <version.mybatis>2.0.0</version.mybatis>
         <version.druid>1.1.10</version.druid>
         <version.fastjson>1.2.56</version.fastjson>
+        <version.guava>23.0</version.guava>
     </properties>
     <modules>
         <module>springboot-learn-batch</module>
@@ -45,6 +46,7 @@
         <module>springboot-learn-rest</module>
         <module>springboot-learn-cache-ehcache</module>
         <module>springboot-learn-security</module>
+        <module>springboot-learn-activemq</module>
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->
@@ -58,6 +60,11 @@
             <!--                <scope>import</scope>-->
             <!--            </dependency>-->
 
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${version.guava}</version>
+            </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
