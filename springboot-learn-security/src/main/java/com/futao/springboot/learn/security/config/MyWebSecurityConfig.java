@@ -9,7 +9,7 @@ import org.springframework.security.authentication.*;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.io.PrintWriter;
@@ -30,12 +30,14 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-//        return new BCryptPasswordEncoder();
+        //密码无加密
+//        return NoOpPasswordEncoder.getInstance();
+        //秘钥迭代次数
+        return new BCryptPasswordEncoder(10);
     }
 
     /**
-     * 配置用户名密码角色
+     * 基于内存的配置 用户名密码角色
      *
      * @param auth
      * @throws Exception
@@ -44,7 +46,7 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
-                .withUser("admin").password("nobug666").roles("admin", "user")
+                .withUser("admin").password("$2a$10$ltemjyGkgpfRQaB3uI/4AuFv6wEbKpTyQ4KB4x0FP5vGgNz2E8/4G").roles("admin", "user")
                 .and()
                 .withUser("DBA").password("DBA").roles("admin", "DBA")
                 .and()
@@ -63,6 +65,8 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //除了配置之外的地址都需要认证了才能访问
                 .authenticated()
                 .and()
+
+
                 //开启表单登录.登录接口为/login.登录参数的用户名必须是username,密码必须是password
                 .formLogin()
                 .loginPage("/login_page")
@@ -111,6 +115,8 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //和登录相关的接口都需要认证即可访问
                 .permitAll()
                 .and()
+
+
                 //注销处理
                 .logout()
                 .logoutUrl("/logout")
