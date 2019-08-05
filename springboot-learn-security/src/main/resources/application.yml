@@ -8,3 +8,16 @@ spring:
       name: admin
       password: nobug666
       roles: admin
+  jpa:
+    show-sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    open-in-view: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/springboot_learn_security?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456789

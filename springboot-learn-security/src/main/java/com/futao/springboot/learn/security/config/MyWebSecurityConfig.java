@@ -1,6 +1,8 @@
 package com.futao.springboot.learn.security.config;
 
 import com.alibaba.fastjson.JSON;
+import com.futao.springboot.learn.security.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -36,21 +38,26 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder(10);
     }
 
+    @Autowired
+    private UserService userService;
+
     /**
-     * 基于内存的配置 用户名密码角色
+     * 用户名密码角色
      *
      * @param auth
      * @throws Exception
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("admin").password("$2a$10$ltemjyGkgpfRQaB3uI/4AuFv6wEbKpTyQ4KB4x0FP5vGgNz2E8/4G").roles("admin", "user")
-                .and()
-                .withUser("DBA").password("DBA").roles("admin", "DBA")
-                .and()
-                .withUser("normal").password("123456").roles("user");
+        auth.userDetailsService(userService);
+        //region 基于内存的用户账号配置
+//                .inMemoryAuthentication()
+//                .withUser("admin").password("$2a$10$ltemjyGkgpfRQaB3uI/4AuFv6wEbKpTyQ4KB4x0FP5vGgNz2E8/4G").roles("admin", "user")
+//                .and()
+//                .withUser("DBA").password("DBA").roles("admin", "DBA")
+//                .and()
+//                .withUser("normal").password("123456").roles("user");
+        //endregion
     }
 
     @Override

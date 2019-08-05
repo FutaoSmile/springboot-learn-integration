@@ -47,6 +47,7 @@
         <module>springboot-learn-cache-ehcache</module>
         <module>springboot-learn-security</module>
         <module>springboot-learn-activemq</module>
+        <module>springboot-learn-httpclient</module>
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->
