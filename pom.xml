@@ -48,6 +48,7 @@
         <module>springboot-learn-security</module>
         <module>springboot-learn-activemq</module>
         <module>springboot-learn-httpclient</module>
+        <module>learn-socket</module>
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->
