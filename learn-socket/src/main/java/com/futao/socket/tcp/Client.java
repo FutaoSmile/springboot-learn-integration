@@ -1,4 +1,4 @@
-package com.futao.socket;
+package com.futao.socket.tcp;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -7,6 +7,8 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
 /**
+ * 基于TCP的Socket通信-客户端
+ *
  * @author futao
  * Created on 2019/9/18.
  */

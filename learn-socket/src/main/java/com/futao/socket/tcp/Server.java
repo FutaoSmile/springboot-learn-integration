@@ -1,4 +1,4 @@
-package com.futao.socket;
+package com.futao.socket.tcp;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,6 +12,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * 基于TCP的Socket通信-服务器端
+ *
  * @author futao
  * Created on 2019/9/18.
  */
