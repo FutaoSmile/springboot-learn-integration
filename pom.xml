@@ -28,6 +28,8 @@
         <version.druid>1.1.10</version.druid>
         <version.fastjson>1.2.56</version.fastjson>
         <version.guava>23.0</version.guava>
+        <version.sockjs>1.1.2</version.sockjs>
+        <version.stomp>2.3.3</version.stomp>
     </properties>
     <modules>
         <module>springboot-learn-batch</module>
@@ -48,6 +50,7 @@
         <module>springboot-learn-security</module>
         <module>springboot-learn-activemq</module>
         <module>springboot-learn-httpclient</module>
+        <module>springboot-learn-websocket</module>
         <module>learn-socket</module>
     </modules>
 
