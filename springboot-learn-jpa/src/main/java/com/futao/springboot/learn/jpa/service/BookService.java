@@ -2,6 +2,9 @@ package com.futao.springboot.learn.jpa.service;
 
 import com.futao.springboot.learn.jpa.dao.BookDao;
 import com.futao.springboot.learn.jpa.model.Book;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,6 +19,15 @@ import java.util.Optional;
 public class BookService {
     @Resource
     private BookDao bookDao;
+
+    @Autowired
+    private NamedParameterJdbcTemplate jdbcTemplate;
+
+    public void a() {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("id", 1);
+        List<Book> books = jdbcTemplate.queryForList("select 1", mapSqlParameterSource, Book.class);
+    }
 
     public Book add(Book book) {
         return bookDao.save(book);

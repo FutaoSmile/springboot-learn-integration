@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: learn-webSocket
+server:
+  port: 8160

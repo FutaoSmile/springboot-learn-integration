@@ -3,6 +3,7 @@ package com.futao.springboot.learn.redis.controller;
 import com.futao.springboot.learn.redis.model.Book;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,5 +40,7 @@ public class BookController {
 
         Book bookResult = (Book) valueOperations.get("book1");
         log.info("bookResult:{}", bookResult);
+
+        SetOperations opsForSet = redisTemplate.opsForSet();
     }
 }
