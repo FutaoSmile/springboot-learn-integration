@@ -12,6 +12,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Spring Data 是Spring 的一个子项目， 致力于简化数据库访问，通过规范的方法名称来分析开
  * 发者的意图，进而减少数据库访问层的代码量。Spring Data 不仅支持关系型数据库，也支持非关
  * 系型数据库。Spring Data JPA 可以有效简化关系型数据库访问代码。
+ * <p>
+ * <p>
+ * ---
+ * 金额可以考虑使用jodaMoney
  *
  * @author futao
  * Created on 2019-07-01.

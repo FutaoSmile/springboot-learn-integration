@@ -4,8 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.joda.money.Money;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author futao
@@ -14,7 +18,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor()
 @Entity(name = "jpa_book")
 public class Book {
 
@@ -29,8 +33,16 @@ public class Book {
     private String author;
 
     @Column(name = "c_price")
-    private float price;
+    private Money price;
 
     @Transient
     private String desc;
+
+    @Column(name = "create_date_time")
+    @CreationTimestamp
+    private Date createDateTime;
+
+    @Column(name = "update_date_time")
+    @UpdateTimestamp
+    private Date updateDateTime;
 }
