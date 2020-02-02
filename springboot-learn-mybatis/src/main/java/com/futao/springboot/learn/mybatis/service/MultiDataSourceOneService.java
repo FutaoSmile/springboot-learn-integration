@@ -18,8 +18,9 @@ public class MultiDataSourceOneService {
     @Autowired
     private MultiDataSourceOneMapper mapperOne;
 
-    @Transactional(rollbackFor = Exception.class)
-    public void add(String moreInfo) {
+    @Transactional(rollbackFor = Exception.class, transactionManager = "platformTransactionManagerOne")
+    public void add(String moreInfo, int num) {
+        System.out.println(1 / num);
         MultiDataSourceEntity entity = new MultiDataSourceEntity();
         long currentTimeMillis = System.currentTimeMillis();
         entity.setMoreInfo(moreInfo);

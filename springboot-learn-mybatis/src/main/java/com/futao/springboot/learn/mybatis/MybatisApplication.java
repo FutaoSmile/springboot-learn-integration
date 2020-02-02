@@ -9,6 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 
 /**
  * 可以在TypeHandler中自定义对于某些类型的转换与处理
+ * 事物-必须是每个数据源一个事物么？？？？
  *
  * @author futao
  * Created on 2019-07-01.
