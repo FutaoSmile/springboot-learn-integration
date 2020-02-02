@@ -6,7 +6,6 @@
         <artifactId>springboot-learn-integration</artifactId>
         <groupId>com.futao</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -32,10 +31,15 @@
             <scope>runtime</scope>
         </dependency>
     </dependencies>
-    <!--在Maven 工程中， XML 配置文件建议写在resources 目录下，但是上文的Mapper.xmls文件写
-    在包下,Maven 在运行时会忽略包下的XML文件，因此需要在pom.xml文件中重新指明资源文件
-    位置，配置如下：-->
+
+
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -48,4 +52,5 @@
             </resource>
         </resources>
     </build>
+
 </project>

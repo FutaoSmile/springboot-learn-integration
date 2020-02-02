@@ -1,6 +1,6 @@
 package com.futao.springboot.learn.mybatis.service;
 
-import com.futao.springboot.learn.mybatis.mapper.BookMapper;
+import com.futao.springboot.learn.mybatis.mapper.one.BookMapper;
 import com.futao.springboot.learn.mybatis.model.Book;
 import org.springframework.stereotype.Service;
 

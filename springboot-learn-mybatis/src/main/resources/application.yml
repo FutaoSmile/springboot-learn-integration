@@ -6,7 +6,7 @@ spring:
 
   datasource:
     one:
-      url: jdbc:mysql://localhost:3306/springboot_learn_persistent_mybatis?useUnicode=true&characterEncoding=utf8
+      url: jdbc:mysql://localhost:3306/springboot_learn_persistent_mybatis_one?useUnicode=true&characterEncoding=utf8
       username: root
       password: 123456789
     two:
@@ -15,7 +15,9 @@ spring:
       password: 123456789
 
 
+appli: 123
+
 mybatis:
   configuration:
-
     map-underscore-to-camel-case: true
+  mapper-locations: classpath*:/mapper/*Mapper.xml

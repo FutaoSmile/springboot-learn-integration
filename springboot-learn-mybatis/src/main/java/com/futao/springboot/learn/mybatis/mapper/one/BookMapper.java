@@ -1,4 +1,4 @@
-package com.futao.springboot.learn.mybatis.mapper;
+package com.futao.springboot.learn.mybatis.mapper.one;
 
 import com.futao.springboot.learn.mybatis.model.Book;
 
