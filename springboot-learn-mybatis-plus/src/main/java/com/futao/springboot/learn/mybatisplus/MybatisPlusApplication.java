@@ -1,8 +1,5 @@
 package com.futao.springboot.learn.mybatisplus;
 
-import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.futao.springboot.learn.mybatisplus.dao.UserMapper;
 import com.futao.springboot.learn.mybatisplus.entity.User;
 import com.futao.springboot.learn.mybatisplus.service.UserService;
@@ -14,7 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.List;
+import java.time.LocalDate;
 
 /**
  * @author futao
@@ -64,15 +61,18 @@ public class MybatisPlusApplication implements ApplicationRunner {
 
 
         //使用mybatis的条件构造器作为xml的where条件
-        LambdaQueryWrapper<User> userLambdaQueryWrapper = Wrappers.lambdaQuery();
-        userLambdaQueryWrapper.ge(User::getAge, 20);
-        List<User> users = userMapper.selectByXml(userLambdaQueryWrapper);
-        System.out.println(JSON.toJSONString(users, true));
+//        LambdaQueryWrapper<User> userLambdaQueryWrapper = Wrappers.lambdaQuery();
+//        userLambdaQueryWrapper.ge(User::getAge, 20);
+//        List<User> users = userMapper.selectByXml(userLambdaQueryWrapper);
+//        System.out.println(JSON.toJSONString(users, true));
 
 
 //        QueryWrapper<User> queryWrapper = Wrappers.<User>query().select("min(age) minAge,max(age) maxAge avg(age) avgAge").groupBy("full_name").having("minAge>{0}", 0);
 //        List<Map<String, Object>> maps = userMapper.selectMaps(queryWrapper);
 //        System.out.println(JSON.toJSONString(maps, true));
 
+
+        //AR模式
+        User.builder().fullName("AR").birthday(LocalDate.now()).age(299).build().insert();
     }
 }

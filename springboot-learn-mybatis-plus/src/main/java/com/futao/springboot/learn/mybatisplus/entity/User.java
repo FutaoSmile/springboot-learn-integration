@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @TableName("user")
-public class User extends IdTimeEntity {
+public class User extends IdTimeEntity<User> {
 
     @Tolerate
     public User() {
