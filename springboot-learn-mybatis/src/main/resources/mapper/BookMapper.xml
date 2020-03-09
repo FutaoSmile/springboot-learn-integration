@@ -3,33 +3,34 @@
 
 <mapper namespace="com.futao.springboot.learn.mybatis.mapper.one.BookMapper">
     <insert id="add" parameterType="com.futao.springboot.learn.mybatis.model.Book">
-        insert into springboot_learn_persistent_mybatis.mybatis_book (id, name, author)
-        values (#{id}, #{name}, #{author})
+        insert into book (id, name, author, amount)
+        values (#{id}, #{name}, #{author}, #{amount})
     </insert>
 
     <update id="update" parameterType="com.futao.springboot.learn.mybatis.model.Book">
-        update springboot_learn_persistent_mybatis.mybatis_book
+        update book
         set name=#{name},
-            author=#{author}
+            author=#{author},
+            amount=#{amount}
         where id = #{id}
     </update>
 
 
     <delete id="delete" parameterType="int">
         delete
-        from springboot_learn_persistent_mybatis.mybatis_book
+        from book
         where id = ${value}
     </delete>
 
     <select id="byId" parameterType="int" resultType="com.futao.springboot.learn.mybatis.model.Book">
         select *
-        from springboot_learn_persistent_mybatis.mybatis_book
+        from book
         where id = #{value}
         limit 1
     </select>
 
     <select id="list" resultType="com.futao.springboot.learn.mybatis.model.Book">
         select *
-        from springboot_learn_persistent_mybatis.mybatis_book
+        from book
     </select>
 </mapper>

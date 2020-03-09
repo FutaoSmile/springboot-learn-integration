@@ -1,0 +1,24 @@
+server:
+  port: 8100
+spring:
+  application:
+    name: learn-mybatis-plus
+  datasource:
+    url: jdbc:mysql://localhost:3306/springboot_learn_persistent_mybatis_plus?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456789
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      futao:
+        springboot:
+          learn:
+            mybatisplus:
+              dao: trace
+              service: trace

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.futao.springboot.learn.mybatisplus.dao.UserMapper">
+
+
+    <select id="selectByXmlPage" resultType="com.futao.springboot.learn.mybatisplus.entity.User">
+        SELECT *
+        FROM user ${ew.customSqlSegment}
+    </select>
+    <select id="selectByXml" resultType="com.futao.springboot.learn.mybatisplus.entity.User">
+        SELECT *
+        FROM user ${ew.customSqlSegment}
+    </select>
+
+</mapper>
