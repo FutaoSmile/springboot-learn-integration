@@ -11,5 +11,11 @@
 
     <artifactId>learn-kit</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>javassist</groupId>
+            <artifactId>org.javassist</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
