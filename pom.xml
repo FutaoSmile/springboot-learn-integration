@@ -53,6 +53,7 @@
         <module>springboot-learn-websocket</module>
         <!--        <module>learn-socket</module>-->
         <module>springboot-learn-mybatis-plus</module>
+        <module>springboot-learn-rabbitmq</module>
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->
