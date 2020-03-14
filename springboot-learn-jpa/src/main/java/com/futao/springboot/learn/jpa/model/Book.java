@@ -1,9 +1,6 @@
 package com.futao.springboot.learn.jpa.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.joda.money.Money;
@@ -18,7 +15,8 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor()
+@AllArgsConstructor
+@EqualsAndHashCode
 @Entity(name = "jpa_book")
 public class Book {
 
