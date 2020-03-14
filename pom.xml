@@ -54,6 +54,7 @@
         <!--        <module>learn-socket</module>-->
         <module>springboot-learn-mybatis-plus</module>
         <module>springboot-learn-rabbitmq</module>
+        <!--        <module>learn-kit</module>-->
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->
@@ -67,6 +68,11 @@
             <!--                <scope>import</scope>-->
             <!--            </dependency>-->
 
+            <dependency>
+                <groupId>javassist</groupId>
+                <artifactId>org.javassist</artifactId>
+                <version>3.24.0-GA</version>
+            </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>

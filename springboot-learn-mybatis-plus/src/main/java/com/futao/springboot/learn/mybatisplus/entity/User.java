@@ -7,7 +7,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Tolerate;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.stream.Stream;
 
 /**
  * @author futao
@@ -31,4 +36,16 @@ public class User extends IdTimeEntity<User> {
 
     @TableField(value = "birthday")
     private LocalDate birthday;
+
+    /**
+     * JDK8中读取文件的方法
+     *
+     * @param args
+     * @throws IOException
+     */
+    public static void main(String[] args) throws IOException {
+        String path = "D:\\src\\backend\\springboot-learn-integration\\springboot-learn-mybatis-plus\\src\\main\\java\\com\\futao\\springboot\\learn\\mybatisplus\\MybatisPlusApplication.java";
+        Stream<String> lines = Files.lines(Paths.get(path), StandardCharsets.UTF_8);
+        lines.forEach(System.out::println);
+    }
 }
