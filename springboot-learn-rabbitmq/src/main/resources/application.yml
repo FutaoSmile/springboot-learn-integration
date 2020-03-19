@@ -12,7 +12,7 @@ spring:
     virtual-host: /springboot-learn
     connection-timeout: 15000
     publisher-confirms: true
-    publisher-returns: true
+    publisher-returns: false
     template:
       mandatory: true
     listener:
@@ -25,8 +25,18 @@ spring:
         acknowledge-mode: manual
         retry:
           enabled: true
+          # 最大重试次数
           max-attempts: 5
+        # 每次从RabbitMQ获取的消息数量
+        prefetch: 5
 
+  datasource:
+    url: jdbc:mysql://localhost:3306/springboot_learn_rabbitmq?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456789
 
-
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
 debug: true

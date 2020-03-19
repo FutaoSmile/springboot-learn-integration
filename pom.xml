@@ -54,7 +54,7 @@
         <!--        <module>learn-socket</module>-->
         <module>springboot-learn-mybatis-plus</module>
         <module>springboot-learn-rabbitmq</module>
-        <!--        <module>learn-kit</module>-->
+<!--        <module>learn-kit</module>-->
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->
@@ -145,12 +145,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-devtools</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--            <optional>true</optional>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>

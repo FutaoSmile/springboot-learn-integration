@@ -16,4 +16,8 @@ public class UserService extends ServiceImpl<UserMapper, User> {
     public void insert(User user) {
         save(user);
     }
+
+    public static void main(String[] args) {
+        System.out.println(1 / 60D + (2 / 60D));
+    }
 }

@@ -1,11 +1,14 @@
 package com.futao.springboot.learn.rabbitmq.model;
 
+import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Tolerate;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @author futao
@@ -14,14 +17,28 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
-public class UserModel {
+@TableName("user")
+public class UserModel extends Model<UserModel> {
 
     @Tolerate
     public UserModel() {
     }
 
-    private int id;
+    @TableId(value = "id", type = IdType.UUID)
+    private String id;
+
+    @TableField("user_name")
     private String userName;
+
+    @TableField("age")
     private int age;
+
+    @TableField("birthday")
     private LocalDate birthday;
+
+    @TableField(value = "create_date_time", fill = FieldFill.INSERT)
+    private LocalDateTime createDateTime;
+
+    @TableField(value = "update_date_time", fill = FieldFill.UPDATE)
+    private LocalDateTime updateDateTime;
 }
