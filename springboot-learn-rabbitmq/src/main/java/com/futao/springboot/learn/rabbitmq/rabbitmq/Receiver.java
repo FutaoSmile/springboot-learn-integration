@@ -9,7 +9,6 @@ import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.messaging.handler.annotation.Headers;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -22,7 +21,7 @@ import java.util.Map;
  * @date 2020/3/14.
  */
 @Slf4j
-@Component
+//@Component
 public class Receiver {
 
     @Resource
@@ -35,5 +34,13 @@ public class Receiver {
         //如开启了手动ACK，则需要这样设置
         channel.basicAck((Long) headers.get(AmqpHeaders.DELIVERY_TAG), false);
         userMapper.insert(JSON.parseObject(body, UserModel.class));
+    }
+
+
+    @RabbitListener(queues = "order-queue", concurrency = "3-5")
+    public void orderReceiver(String msg, Channel channel, @Headers Map<String, Object> headers) throws IOException {
+        log.info("收到order消息[{}]", msg);
+        //如开启了手动ACK，则需要这样设置
+        channel.basicAck((Long) headers.get(AmqpHeaders.DELIVERY_TAG), false);
     }
 }

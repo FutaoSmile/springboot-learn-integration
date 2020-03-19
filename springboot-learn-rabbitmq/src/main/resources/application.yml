@@ -25,10 +25,14 @@ spring:
         acknowledge-mode: manual
         retry:
           enabled: true
+          initialInterval: 3s
+          max-interval: 5s
           # 最大重试次数
-          max-attempts: 5
+          max-attempts: 3
         # 每次从RabbitMQ获取的消息数量
         prefetch: 5
+        # 拒绝的消息是否重新排队
+        default-requeue-rejected: false
 
   datasource:
     url: jdbc:mysql://localhost:3306/springboot_learn_rabbitmq?useUnicode=true&characterEncoding=utf8

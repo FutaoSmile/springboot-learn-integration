@@ -3,7 +3,6 @@ package com.futao.springboot.learn.rabbitmq;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,11 +61,11 @@ public class RabbitMQApplication implements ApplicationRunner {
             log.info("cause:{}", cause);
         });
 
-        rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback() {
-            @Override
-            public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-
-            }
-        });
+//        rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback() {
+//            @Override
+//            public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
+//
+//            }
+//        });
     }
 }
