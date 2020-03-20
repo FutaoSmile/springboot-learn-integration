@@ -43,9 +43,10 @@ public class Sender implements ApplicationRunner {
     });
 
     public void userSender() throws InterruptedException {
-        for (int j = 0; j < 2; j++) {
+        for (int j = 0; j < 1; j++) {
             executorService.execute(() -> {
                 for (int i = 0; i < 10; i++) {
+
                     UserModel userModel = UserModel.builder()
                             .userName(CommonUtil.getRandomJianHan(3) + i)
                             .age(i)
@@ -53,6 +54,7 @@ public class Sender implements ApplicationRunner {
                             .id(IdUtil.simpleUUID())
                             .createDateTime(LocalDateTime.now())
                             .build();
+
                     rabbitTemplate.convertAndSend(
                             "user-exchange",
                             "",

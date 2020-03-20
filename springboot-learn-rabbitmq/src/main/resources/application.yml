@@ -19,22 +19,24 @@ spring:
     listener:
       simple:
         # 每个队列启动的消费者数量
-        concurrency: 5
+        concurrency: 1
         # 每个队列最大的消费者数量
-        max-concurrency: 5
+        max-concurrency: 1
         # 手动签收ACK-那么需要在代码中手动设置ACK
         acknowledge-mode: manual
         retry:
           enabled: true
           initialInterval: 3s
-          max-interval: 5s
+          # 两次尝试之间的最长持续时间。
+          max-interval: 2s
           # 最大重试次数
-          max-attempts: 3
+          max-attempts: 2
         # 每次从RabbitMQ获取的消息数量
         prefetch: 1
-        # 拒绝的消息是否重新排队
-        default-requeue-rejected: false
+        # 拒绝的消息是否重新排队（重试次数超过上面的设置之后是否丢弃)
+        default-requeue-rejected: true
   datasource:
+
     url: jdbc:mysql://localhost:3306/springboot_learn_rabbitmq?useUnicode=true&characterEncoding=utf8
     username: root
     password: 123456789

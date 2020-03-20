@@ -37,7 +37,7 @@ public class Definition {
                 .withArgument("x-dead-letter-routing-key", "user-dead-letter-routing-key")
                 //队列消息的TTL
 //                .withArgument("x-message-ttl", 5000)
-                .autoDelete()
+//                .autoDelete()
                 .build();
     }
 
@@ -77,7 +77,7 @@ public class Definition {
                 .withArgument("x-dead-letter-routing-key", "order-dead-letter-routing-key")
                 //队列消息的TTL
 //                .withArgument("x-message-ttl", 10000)
-                .autoDelete()
+//                .autoDelete()
                 .build();
     }
 
@@ -98,6 +98,14 @@ public class Definition {
     //-----------dead letter start--------------------------------------------------------------------------------
 
 
+    /*
+    ----死信队列----
+    消息被否定确认，使用 channel.basicNack 或 channel.basicReject ，并且此时requeue 属性被设置为false。
+    消息在队列的存活时间超过设置的TTL时间。
+    消息队列的消息数量已经超过最大队列长度。
+
+     */
+
     @Bean
     public Exchange deadLetterExchange() {
         return ExchangeBuilder
@@ -115,11 +123,11 @@ public class Definition {
 
     @Bean
     public Binding userDeadLetterBinding(
-            @Qualifier("userQueue") Queue userQueue,
+            @Qualifier("userDeadLetterQueue") Queue userDeadLetterQueue,
             @Qualifier("deadLetterExchange") Exchange exchange
     ) {
         return BindingBuilder
-                .bind(userQueue)
+                .bind(userDeadLetterQueue)
                 .to(exchange)
                 .with("user-dead-letter-routing-key")
                 .noargs();
@@ -135,11 +143,11 @@ public class Definition {
 
     @Bean
     public Binding orderDeadLetterBinding(
-            @Qualifier("orderQueue") Queue orderQueue,
+            @Qualifier("orderDeadLetterQueue") Queue orderDeadLetterQueue,
             @Qualifier("deadLetterExchange") Exchange exchange
     ) {
         return BindingBuilder
-                .bind(orderQueue)
+                .bind(orderDeadLetterQueue)
                 .to(exchange)
                 //指定路由键
                 .with("order-dead-letter-routing-key")
