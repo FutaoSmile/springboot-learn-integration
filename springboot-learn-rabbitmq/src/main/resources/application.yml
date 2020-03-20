@@ -33,7 +33,7 @@ spring:
           max-attempts: 2
         # 每次从RabbitMQ获取的消息数量
         prefetch: 1
-        # 拒绝的消息是否重新排队（重试次数超过上面的设置之后是否丢弃)
+        # 拒绝的消息是否重新排队（重试次数超过上面的设置之后是否丢弃)---测试下来没差别，消息都会到deadLetterQueue中，具体不了解
         default-requeue-rejected: true
   datasource:
 

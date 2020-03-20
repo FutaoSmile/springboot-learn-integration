@@ -24,6 +24,7 @@ public class Definition {
         return ExchangeBuilder
                 .fanoutExchange("user-exchange")
                 .durable(true)
+                .autoDelete()
                 .build();
     }
 
@@ -35,9 +36,9 @@ public class Definition {
                 .withArgument("x-dead-letter-exchange", "common-dead-letter-exchange")
                 //声明该队列死信消息在交换机的 路由键
                 .withArgument("x-dead-letter-routing-key", "user-dead-letter-routing-key")
-                //队列消息的TTL
+                //队列消息的TTL 毫秒
 //                .withArgument("x-message-ttl", 5000)
-//                .autoDelete()
+                .autoDelete()
                 .build();
     }
 
@@ -63,6 +64,7 @@ public class Definition {
         return ExchangeBuilder
                 .fanoutExchange("order-exchange")
                 .durable(true)
+                .autoDelete()
                 .build();
     }
 
@@ -77,7 +79,7 @@ public class Definition {
                 .withArgument("x-dead-letter-routing-key", "order-dead-letter-routing-key")
                 //队列消息的TTL
 //                .withArgument("x-message-ttl", 10000)
-//                .autoDelete()
+                .autoDelete()
                 .build();
     }
 
@@ -111,6 +113,7 @@ public class Definition {
         return ExchangeBuilder
                 .directExchange("common-dead-letter-exchange")
                 .durable(true)
+                .autoDelete()
                 .build();
     }
 
@@ -118,6 +121,7 @@ public class Definition {
     public Queue userDeadLetterQueue() {
         return QueueBuilder
                 .durable("user-dead-letter-queue")
+                .autoDelete()
                 .build();
     }
 
@@ -138,6 +142,7 @@ public class Definition {
     public Queue orderDeadLetterQueue() {
         return QueueBuilder
                 .durable("order-dead-letter-queue")
+                .autoDelete()
                 .build();
     }
 
