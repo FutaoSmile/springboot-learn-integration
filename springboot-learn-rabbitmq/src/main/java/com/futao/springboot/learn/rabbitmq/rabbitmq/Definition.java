@@ -3,6 +3,7 @@ package com.futao.springboot.learn.rabbitmq.rabbitmq;
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Exchange与Queue绑定
@@ -12,7 +13,7 @@ import org.springframework.context.annotation.Bean;
  * @author futao
  * @date 2020/3/14.
  */
-//@Component
+@Configuration
 public class Definition {
 
 

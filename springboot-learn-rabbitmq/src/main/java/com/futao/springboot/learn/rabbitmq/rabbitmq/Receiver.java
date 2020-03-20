@@ -9,6 +9,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.messaging.handler.annotation.Headers;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -21,7 +22,7 @@ import java.util.Map;
  * @date 2020/3/14.
  */
 @Slf4j
-//@Component
+@Component
 public class Receiver {
 
     @Resource
@@ -29,17 +30,19 @@ public class Receiver {
 
     @RabbitHandler
     @RabbitListener(queues = "user-queue")
-    public void userReceiver(String body, Channel channel, @Headers Map<String, Object> headers) throws IOException {
-        log.info("开始消费[{}]", body);
+    public void userReceiver(String body, Channel channel, @Headers Map<String, Object> headers) throws IOException, InterruptedException {
+        log.info("user开始消费[{}]", body);
         //如开启了手动ACK，则需要这样设置
+        Thread.sleep(10000L);
         channel.basicAck((Long) headers.get(AmqpHeaders.DELIVERY_TAG), false);
         userMapper.insert(JSON.parseObject(body, UserModel.class));
     }
 
 
     @RabbitListener(queues = "order-queue", concurrency = "3-5")
-    public void orderReceiver(String msg, Channel channel, @Headers Map<String, Object> headers) throws IOException {
+    public void orderReceiver(String msg, Channel channel, @Headers Map<String, Object> headers) throws IOException, InterruptedException {
         log.info("收到order消息[{}]", msg);
+        Thread.sleep(3000L);
         //如开启了手动ACK，则需要这样设置
         channel.basicAck((Long) headers.get(AmqpHeaders.DELIVERY_TAG), false);
     }

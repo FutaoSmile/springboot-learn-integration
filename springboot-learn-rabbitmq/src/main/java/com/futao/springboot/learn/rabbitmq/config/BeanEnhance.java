@@ -1,6 +1,5 @@
 package com.futao.springboot.learn.rabbitmq.config;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -27,24 +26,25 @@ public class BeanEnhance implements BeanPostProcessor {
             //消息投递成功与否的监听，可以用来保证消息100%投递到rabbitMQ。（如果某条消息（通过id判定)在一定时间内未收到该回调，则重发该消息)
             //需要设置 publisher-confirms: true
             ((RabbitTemplate) bean).setConfirmCallback((correlationData, ack, cause) -> {
-                if (ack) {
-                    log.info("消息投递成功");
-                } else {
-                    log.info("消息投递失败");
-                }
-                log.info("消息相关数据，消息ID，correlationData:{}", JSON.toJSONString(correlationData));
-                log.info("cause:{}", cause);
+//                if (ack) {
+//                    log.info("消息投递成功");
+//                } else {
+//                    log.info("消息投递失败");
+//                }
+//                log.info("消息相关数据，消息ID，correlationData:{}", JSON.toJSONString(correlationData));
+//                log.info("cause:{}", cause);
             });
 
             //消息路由失败的回调--需要设置   publisher-returns: true 并且   template: mandatory: true 否则rabbit将丢弃该条消息
             ((RabbitTemplate) bean).setReturnCallback((message, replyCode, replyText, exchange, routingKey) -> {
-                log.info("消息路由失败回调...");
+                log.info("消息路由失败回调...做一些补偿或者记录.............................................");
                 log.info("message{}", message);
                 log.info("replyCode{}", replyCode);
                 log.info("replyText{}", replyText);
                 log.info("exchange{}", exchange);
                 log.info("routingKey{}", routingKey);
             });
+
         }
         return bean;
     }

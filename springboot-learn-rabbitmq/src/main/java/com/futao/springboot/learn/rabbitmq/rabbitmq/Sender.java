@@ -43,9 +43,9 @@ public class Sender implements ApplicationRunner {
     });
 
     public void userSender() throws InterruptedException {
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < 2; j++) {
             executorService.execute(() -> {
-                for (int i = 0; i < 7; i++) {
+                for (int i = 0; i < 10; i++) {
                     UserModel userModel = UserModel.builder()
                             .userName(CommonUtil.getRandomJianHan(3) + i)
                             .age(i)
@@ -55,7 +55,7 @@ public class Sender implements ApplicationRunner {
                             .build();
                     rabbitTemplate.convertAndSend(
                             "user-exchange",
-                            "uuu",
+                            "",
                             JSON.toJSONString(userModel),
                             new CorrelationData(String.valueOf(userModel.getId()))
                     );

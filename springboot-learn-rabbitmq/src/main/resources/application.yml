@@ -14,6 +14,7 @@ spring:
     publisher-confirms: true
     publisher-returns: true
     template:
+      # 消息路由失败通知监听者，而不是将消息丢弃
       mandatory: true
     listener:
       simple:
@@ -30,10 +31,9 @@ spring:
           # 最大重试次数
           max-attempts: 3
         # 每次从RabbitMQ获取的消息数量
-        prefetch: 5
+        prefetch: 1
         # 拒绝的消息是否重新排队
         default-requeue-rejected: false
-
   datasource:
     url: jdbc:mysql://localhost:3306/springboot_learn_rabbitmq?useUnicode=true&characterEncoding=utf8
     username: root
