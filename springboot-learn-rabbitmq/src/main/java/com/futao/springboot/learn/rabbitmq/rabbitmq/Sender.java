@@ -53,7 +53,12 @@ public class Sender implements ApplicationRunner {
                             .id(IdUtil.simpleUUID())
                             .createDateTime(LocalDateTime.now())
                             .build();
-                    rabbitTemplate.convertAndSend("user-exchange", "", JSON.toJSONString(userModel), new CorrelationData(String.valueOf(userModel.getId())));
+                    rabbitTemplate.convertAndSend(
+                            "user-exchange",
+                            "uuu",
+                            JSON.toJSONString(userModel),
+                            new CorrelationData(String.valueOf(userModel.getId()))
+                    );
                     log.info("send{}", i);
                 }
             });
@@ -62,6 +67,6 @@ public class Sender implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        userSender();
+        userSender();
     }
 }

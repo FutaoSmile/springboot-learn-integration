@@ -12,7 +12,6 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
@@ -21,7 +20,7 @@ import java.io.IOException;
  * @date 2020/3/19.
  */
 @Slf4j
-@Component
+//@Component
 public class DeadLetterTest implements ApplicationRunner {
 
     @Autowired
