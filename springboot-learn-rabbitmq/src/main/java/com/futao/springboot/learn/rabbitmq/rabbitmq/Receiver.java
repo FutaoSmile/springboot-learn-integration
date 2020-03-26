@@ -10,7 +10,6 @@ import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.messaging.handler.annotation.Headers;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -23,7 +22,7 @@ import java.util.Map;
  * @date 2020/3/14.
  */
 @Slf4j
-@Component
+//@Component
 public class Receiver {
 
     @Resource

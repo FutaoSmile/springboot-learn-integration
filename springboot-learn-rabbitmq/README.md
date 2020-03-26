@@ -17,7 +17,11 @@
     * 如果TTL设置在消息上，rabbitMQ只会检查第一个消息是否过期，那么第二个消息虽然已经过期了，也无法被检测到，所以会导致业务不正常
         * 处理的方法：
       TODO 还没有搞清楚，消息过期和延迟
-    
+* 延迟队列：（[可参考](https://a601942905git.github.io/2019/01/28/rabbitmq/spring-boot-rabbitmq-xi-lie-zhi-liu-shi-xian-xiao-xi-yan-chi/spring-boot-rabbitmq-xi-lie-zhi-liu-shi-xian-xiao-xi-yan-chi/)）
+    * 需要安装插件
+    * 比如订单30分钟内没有被支付则自动取消：
+        * 消息发送到MQ，设置延迟时间为30分钟，则消息会在30分钟到再发送到消费者。
+        * 备注：可以发现这类消息在发送到RabbitMQ之后会触发NO_ROUTE回调，猜测是消息会在exchange保留30分钟之后，再路由到对应的Queue
 * Consumer消费者限流
     * 设置为手动签收， 设置prefetch: n。消息ACK之前，rabbitMQ不会继续向消费者发送消息。从而达到限流的目的
     

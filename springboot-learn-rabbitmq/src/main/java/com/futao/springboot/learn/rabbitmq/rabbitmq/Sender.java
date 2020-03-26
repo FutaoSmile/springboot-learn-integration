@@ -9,7 +9,6 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,7 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date 2020/3/14.
  */
 @Slf4j
-@Component
+//@Component
 public class Sender implements ApplicationRunner {
 
 
@@ -64,7 +63,7 @@ public class Sender implements ApplicationRunner {
                             message -> {
                                 int i1 = 1000 * (10 - finalI);
                                 log.info("set age {} ttl {}", finalI, i1);
-                                message.getMessageProperties().setDelay(finalI);
+//                                message.getMessageProperties().setDelay(finalI);
                                 return message;
                             },
                             new CorrelationData(String.valueOf(userModel.getId()))
