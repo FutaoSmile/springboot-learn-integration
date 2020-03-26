@@ -1,7 +1,6 @@
 package com.futao.springboot.learn.mybatisplus;
 
 import com.futao.springboot.learn.mybatisplus.dao.UserMapper;
-import com.futao.springboot.learn.mybatisplus.entity.User;
 import com.futao.springboot.learn.mybatisplus.service.UserService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.context.WebApplicationContext;
-
-import java.time.LocalDate;
 
 /**
  * @author futao
@@ -73,6 +70,6 @@ public class MybatisPlusApplication implements ApplicationRunner {
 
 
         //AR模式
-        User.builder().fullName("AR").birthday(LocalDate.now()).age(299).build().insert();
+//        User.builder().fullName("AR").birthday(LocalDate.now()).age(299).build().insert();
     }
 }

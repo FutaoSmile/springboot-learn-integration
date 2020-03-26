@@ -5,7 +5,7 @@ spring:
   application:
     name: learn-rabbitmq
   rabbitmq:
-    addresses: localhost
+    host: localhost
     port: 5672
     username: futao
     password: 123456789
@@ -14,7 +14,7 @@ spring:
     publisher-confirms: true
     publisher-returns: true
     template:
-      # 消息路由失败通知监听者，而不是将消息丢弃
+      # 必须设置成true 消息路由失败通知监听者，而不是将消息丢弃
       mandatory: true
     listener:
       simple:
@@ -45,4 +45,4 @@ mybatis-plus:
   mapper-locations: classpath*:/mapper/*Mapper.xml
   configuration:
     map-underscore-to-camel-case: true
-debug: true
+debug: false

@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.stereotype.Component;
 
@@ -27,13 +28,13 @@ public class Receiver {
     private UserMapper userMapper;
 
     @RabbitHandler
-    @RabbitListener(queues = "user-queue")
+    @RabbitListener(queues = "ttl-queue")
     public void userReceiver(String body, Channel channel, @Headers Map<String, Object> headers, Message message) throws IOException, InterruptedException {
         log.info("user开始消费[{}]", body);
 
-        Thread.sleep(1000L);
+//        Thread.sleep(1000L);
         //手动签收
-//        channel.basicAck((Long) headers.get(AmqpHeaders.DELIVERY_TAG), false);
+        channel.basicAck((Long) headers.get(AmqpHeaders.DELIVERY_TAG), false);
 
 
         long deliveryTag = message.getMessageProperties().getDeliveryTag();
@@ -41,7 +42,7 @@ public class Receiver {
         //long deliveryTag, boolean multiple是否批量, boolean requeue是否重回队列-并且在头部
         //requeue=true，消息会被放在最前面。requeue=false，消息会放在最后面)
 //        throw new RuntimeException("--");
-        channel.basicNack(deliveryTag, false, false);
+//        channel.basicNack(deliveryTag, false, false);
 //        userMapper.insert(JSON.parseObject(body, UserModel.class));
     }
 
@@ -53,4 +54,6 @@ public class Receiver {
 //        channel.basicAck((Long) headers.get(AmqpHeaders.DELIVERY_TAG), false);
         channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, false);
     }
+
+
 }

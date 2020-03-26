@@ -39,4 +39,26 @@ public class DeadLetterHandler {
         }
     }
 
+
+    @RabbitListener(queues = "ttl-dead-letter-queue")
+    public void ttlDeadLetterHandler(String msg, Message message, Channel channel, @Headers Map<String, Object> map) {
+        try {
+            log.error("【死信队列消息】--------------------------------------------{}", msg);
+            //可以在Message中看到失败原因，失败之前投递的exchange和queue
+            log.error("【死信队列message】{}", JSON.toJSONString(message));
+            log.error("【死信队列message.body】{}", JSON.toJSONString(new String(message.getBody())));
+            log.error("【死信队列channel】{}", JSON.toJSONString(channel));
+            log.error("【死信队列map】{}", JSON.toJSONString(map));
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }
