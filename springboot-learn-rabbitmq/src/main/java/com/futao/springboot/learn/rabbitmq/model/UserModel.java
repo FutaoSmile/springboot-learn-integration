@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Tolerate;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -18,7 +19,7 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @TableName("user")
-public class UserModel extends Model<UserModel> {
+public class UserModel extends Model<UserModel> implements Serializable {
 
     @Tolerate
     public UserModel() {

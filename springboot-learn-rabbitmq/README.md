@@ -23,6 +23,16 @@
     
     
     
+* 如果想直接发送Model和接收Model，
+例如 
+```java
+    @RabbitHandler
+    @RabbitListener(queues = "ttl-queue")
+    public void userReceiver(UserModel body, Channel channel, @Headers Map<String, Object> headers, Message message) throws IOException, InterruptedException {
+        log.info("user开始消费[{}]", JSON.toJSONString(body));
+}
+```
+则将Model实现`implements Serializable`接口即可
 
 
 * 不错的文章: https://www.cnblogs.com/mfrank/p/11184929.html

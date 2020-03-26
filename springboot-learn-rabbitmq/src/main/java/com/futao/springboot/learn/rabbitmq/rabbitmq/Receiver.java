@@ -1,6 +1,8 @@
 package com.futao.springboot.learn.rabbitmq.rabbitmq;
 
+import com.alibaba.fastjson.JSON;
 import com.futao.springboot.learn.rabbitmq.dao.UserMapper;
+import com.futao.springboot.learn.rabbitmq.model.UserModel;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -29,8 +31,8 @@ public class Receiver {
 
     @RabbitHandler
     @RabbitListener(queues = "ttl-queue")
-    public void userReceiver(String body, Channel channel, @Headers Map<String, Object> headers, Message message) throws IOException, InterruptedException {
-        log.info("user开始消费[{}]", body);
+    public void userReceiver(UserModel body, Channel channel, @Headers Map<String, Object> headers, Message message) throws IOException, InterruptedException {
+        log.info("user开始消费[{}]", JSON.toJSONString(body));
 
 //        Thread.sleep(1000L);
         //手动签收

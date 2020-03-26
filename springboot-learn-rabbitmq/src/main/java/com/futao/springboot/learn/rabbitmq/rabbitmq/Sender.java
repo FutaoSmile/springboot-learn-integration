@@ -1,7 +1,6 @@
 package com.futao.springboot.learn.rabbitmq.rabbitmq;
 
 import cn.hutool.core.util.IdUtil;
-import com.alibaba.fastjson.JSON;
 import com.futao.springboot.learn.rabbitmq.model.UserModel;
 import com.futao.springboot.learn.rabbitmq.util.CommonUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +9,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date 2020/3/14.
  */
 @Slf4j
-//@Component
+@Component
 public class Sender implements ApplicationRunner {
 
 
@@ -58,7 +58,8 @@ public class Sender implements ApplicationRunner {
                     rabbitTemplate.convertAndSend(
                             "ttl-exchange",
                             "",
-                            JSON.toJSONString(userModel),
+//                            JSON.toJSONString(userModel),
+                            userModel,
                             //在消息发送之前应用于它的处理器
                             message -> {
                                 int i1 = 1000 * (10 - finalI);
