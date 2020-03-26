@@ -46,3 +46,11 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
 debug: false
+logging:
+  level:
+    com:
+      futao:
+        springboot:
+          learn:
+            rabbitmq:
+              config: debug

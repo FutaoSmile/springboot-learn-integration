@@ -2,7 +2,6 @@ package com.futao.springboot.learn.rabbitmq.rabbitmq.delay;
 
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
 
@@ -10,7 +9,7 @@ import java.util.HashMap;
  * @author futao
  * @date 2020/3/26.
  */
-@Configuration
+//@Configuration
 public class Binding {
 
     public static final String DELAY_QUEUE = "delay-queue";
