@@ -54,7 +54,9 @@
         <!--        <module>learn-socket</module>-->
         <module>springboot-learn-mybatis-plus</module>
         <module>springboot-learn-rabbitmq</module>
-<!--        <module>learn-kit</module>-->
+        <module>springboot-learn-es</module>
+        <module>springboot-learn-solr</module>
+        <!--        <module>learn-kit</module>-->
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->
