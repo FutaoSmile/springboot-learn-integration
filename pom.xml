@@ -56,6 +56,7 @@
         <module>springboot-learn-rabbitmq</module>
         <module>springboot-learn-es</module>
         <module>springboot-learn-solr</module>
+        <module>springboot-learn-spring</module>
         <!--        <module>learn-kit</module>-->
     </modules>
 
