@@ -1,14 +1,28 @@
 package com.futao.springboot.learn.rabbitmq.config;
 
-import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.mapper.MessageMapper;
+import com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.model.Message;
+import com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.model.enums.MessageStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 /**
+ * Bean增强
+ * 【严重警告】: 不可在该类中注入Bean，被注入的Bean不会被BeanPostProcessor增强，造成误伤。
+ * 必须通过容器来获取需要注入的Bean
+ *
  * @author futao
  * @date 2020/3/20.
  */
@@ -16,24 +30,45 @@ import org.springframework.stereotype.Component;
 @Component
 public class BeanEnhance implements BeanPostProcessor {
 
+//    @Resource
+//    private MessageMapper messageMapper;
+
+    @Value("${app.rabbitmq.retry.max-retry-times}")
+    private int maxRetryTimes;
+
+    @Value("${app.rabbitmq.retry.retry-interval}")
+    private Duration retryInterval;
+
+//    @Autowired
+//    private RabbitTemplate rabbitTemplate;
+//
+//    @Autowired
+//    private BeanEnhance enhance;
+
+
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if (CachingConnectionFactory.class.equals(bean.getClass())) {
             //设置消费者在断开与RabbitMQ的连接之后自动重新连接
             ((CachingConnectionFactory) bean).getRabbitConnectionFactory().setAutomaticRecoveryEnabled(true);
         }
-
+        //增强RabbitTemplate
         if (RabbitTemplate.class.equals(bean.getClass())) {
             //消息投递成功与否的监听，可以用来保证消息100%投递到rabbitMQ。（如果某条消息（通过id判定)在一定时间内未收到该回调，则重发该消息)
             //需要设置 publisher-confirms: true
             ((RabbitTemplate) bean).setConfirmCallback((correlationData, ack, cause) -> {
+                String correlationDataId = correlationData.getId();
                 if (ack) {
-                    log.debug("消息投递成功");
+                    log.debug("消息[{}]投递成功，将DB中的消息状态设置为投递成功", correlationDataId);
+                    ApplicationContextHolder.getContext().getBean(MessageMapper.class).update(null,
+                            Wrappers.<Message>lambdaUpdate()
+                                    .set(Message::getStatus, MessageStatusEnum.SUCCESS.getStatus())
+                                    .eq(Message::getId, correlationDataId)
+                    );
                 } else {
-                    log.debug("消息投递失败");
+                    log.debug("消息[{}]投递失败,cause:{}", correlationDataId, cause);
+                    ApplicationContextHolder.getContext().getBean(BeanEnhance.class).reSend(correlationDataId);
                 }
-                log.debug("消息相关数据，消息ID，correlationData:{}", JSON.toJSONString(correlationData));
-                log.debug("cause:{}", cause);
             });
 
             //消息路由失败的回调--需要设置   publisher-returns: true 并且   template: mandatory: true 否则rabbit将丢弃该条消息
@@ -45,10 +80,25 @@ public class BeanEnhance implements BeanPostProcessor {
                 log.warn("exchange{}", exchange);
                 log.warn("routingKey{}", routingKey);
             });
-
-            System.out.println("---" + ((RabbitTemplate) bean).getMessageConverter());
-
         }
         return bean;
+    }
+
+
+    @Transactional(rollbackFor = Exception.class)
+    public void reSend(String correlationDataId) {
+        Message message = ApplicationContextHolder.getContext().getBean(MessageMapper.class).selectById(correlationDataId);
+        if (message.getRetryTimes() < maxRetryTimes) {
+            //进行重试
+            ApplicationContextHolder.getContext().getBean(RabbitTemplate.class).convertAndSend(message.getExchangeName(), message.getRoutingKey(), message.getMsgData(), new CorrelationData(correlationDataId));
+            //更新DB消息状态
+            ApplicationContextHolder.getContext().getBean(MessageMapper.class).update(null,
+                    Wrappers.<Message>lambdaUpdate()
+                            .set(Message::getStatus, MessageStatusEnum.SENDING.getStatus())
+                            .set(Message::getNextRetryDateTime, LocalDateTime.now(ZoneOffset.ofHours(8)).plus(retryInterval))
+                            .set(Message::getRetryTimes, message.getRetryTimes() + 1)
+                            .eq(Message::getId, correlationDataId)
+            );
+        }
     }
 }

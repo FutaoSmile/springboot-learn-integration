@@ -2,13 +2,12 @@ package com.futao.springboot.learn.rabbitmq.rabbitmq.expiration;
 
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author futao
  * @date 2020/3/26.
  */
-@Configuration
+//@Configuration
 public class ExpirationDefinition {
 
     @Bean

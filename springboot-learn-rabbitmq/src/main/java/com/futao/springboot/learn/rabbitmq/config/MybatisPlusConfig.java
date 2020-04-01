@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 /**
  * @author futao
@@ -30,11 +31,11 @@ public class MybatisPlusConfig implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        setFieldValByName("createDateTime", LocalDateTime.now(), metaObject);
+        setFieldValByName("createDateTime", LocalDateTime.now(ZoneOffset.ofHours(8)), metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        setFieldValByName("updateDateTime", LocalDateTime.now(), metaObject);
+        setFieldValByName("updateDateTime", LocalDateTime.now(ZoneOffset.ofHours(8)), metaObject);
     }
 }

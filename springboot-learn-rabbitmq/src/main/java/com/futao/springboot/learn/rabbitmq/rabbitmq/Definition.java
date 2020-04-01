@@ -3,7 +3,6 @@ package com.futao.springboot.learn.rabbitmq.rabbitmq;
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +15,7 @@ import java.util.Map;
  * @author futao
  * @date 2020/3/14.
  */
-@Configuration
+//@Configuration
 public class Definition {
 
 

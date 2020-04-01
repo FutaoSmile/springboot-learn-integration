@@ -1,6 +1,5 @@
 package com.futao.springboot.learn.rabbitmq;
 
-import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,8 +23,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author futao
  * @date 2020/3/14.
  */
-@MapperScan("com.futao.springboot.learn.rabbitmq.dao")
-@Slf4j
+@MapperScan({"com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.mapper"})
 @SpringBootApplication
 public class RabbitMQApplication {
     public static void main(String[] args) {
