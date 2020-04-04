@@ -11,7 +11,9 @@ spring:
     password: 123456789
     virtual-host: reliable-delivery
     connection-timeout: 15000
+    # 发送确认
     publisher-confirms: true
+    # 路由失败回调
     publisher-returns: true
     template:
       # 必须设置成true 消息路由失败通知监听者，而不是将消息丢弃
@@ -34,7 +36,7 @@ spring:
         # 每次从RabbitMQ获取的消息数量
         prefetch: 1
         # 拒绝的消息是否重新排队（重试次数超过上面的设置之后是否丢弃)---测试下来没差别，消息都会到deadLetterQueue中，具体不了解
-        default-requeue-rejected: true
+        default-requeue-rejected: false
   datasource:
     url: jdbc:mysql://localhost:3306/springboot_learn_rabbitmq?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
     username: root
@@ -56,10 +58,14 @@ logging:
 app:
   rabbitmq:
     retry:
+      # 消息最大重试次数
       max-retry-times: 5
+      # 每次重试时间间隔
       retry-interval: 5s
+    # 队列定义
     queue:
       user: user-queue
+    # 交换机定义
     exchange:
       user: user-exchange
 

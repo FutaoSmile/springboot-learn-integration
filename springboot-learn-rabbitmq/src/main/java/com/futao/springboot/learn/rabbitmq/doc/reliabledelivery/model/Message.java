@@ -1,23 +1,26 @@
 package com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.model;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.model.base.IdTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Tolerate;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * 消息发送历史
+ *
  * @author futao
  * @date 2020/3/31.
  */
 @Getter
 @Setter
 @Builder
-public class Message extends IdTimeEntity implements Serializable {
+@TableName("message")
+public class Message extends IdTimeEntity {
 
     @Tolerate
     public Message() {

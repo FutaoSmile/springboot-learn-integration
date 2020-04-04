@@ -18,7 +18,7 @@ public class Declare {
     public Queue userQueue(@Value("${app.rabbitmq.queue.user}") String userQueueName) {
         return QueueBuilder
                 .durable(userQueueName)
-                .withArgument("x-max-length", 2)
+                //.withArgument("x-max-length", 2)
                 .build();
     }
 

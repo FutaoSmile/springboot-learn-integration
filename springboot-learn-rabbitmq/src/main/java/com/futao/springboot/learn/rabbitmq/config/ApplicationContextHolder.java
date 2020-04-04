@@ -22,4 +22,17 @@ public class ApplicationContextHolder implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         context = applicationContext;
     }
+
+
+    public static <T> T getBean(Class<T> aClass) {
+        return context.getBean(aClass);
+    }
+
+    public static <T> T getBean(String name, Class<T> aClass) {
+        return context.getBean(name, aClass);
+    }
+
+    public static Object getBean(String name) {
+        return context.getBean(name);
+    }
 }

@@ -42,6 +42,7 @@ public class Sender {
                 .exchangeName(userExchangeName)
                 .routingKey("user.abc")
                 .status(MessageStatusEnum.SENDING.getStatus())
+                //下次重试时间
                 .nextRetryDateTime(LocalDateTime.now(ZoneOffset.ofHours(8)).plus(retryInterval))
                 .retryTimes(0)
                 .build();
