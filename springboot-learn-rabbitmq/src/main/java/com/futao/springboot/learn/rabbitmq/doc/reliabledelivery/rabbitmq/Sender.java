@@ -35,7 +35,6 @@ public class Sender {
     @Value("${app.rabbitmq.exchange.user}")
     private String userExchangeName;
 
-    //    @Transactional(rollbackFor = Exception.class)
     public void send(User user) {
         Message message = Message.builder()
                 .msgData(JSON.toJSONString(user))
@@ -46,10 +45,12 @@ public class Sender {
                 .nextRetryDateTime(LocalDateTime.now(ZoneOffset.ofHours(8)).plus(retryInterval))
                 .retryTimes(0)
                 .build();
+        //消息落库
         messageMapper.insert(
                 message
         );
         CorrelationData correlationData = new CorrelationData(message.getId());
+        //消息投递到MQ
         rabbitTemplate.convertAndSend(userExchangeName, "user.abc", JSON.toJSONString(user), correlationData);
     }
 

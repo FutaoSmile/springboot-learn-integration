@@ -5,7 +5,6 @@ import com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.mapper.MessageMa
 import com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.model.Message;
 import com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.model.enums.MessageStatusEnum;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeansException;
@@ -33,9 +32,15 @@ public class BeanEnhance implements BeanPostProcessor {
 //    @Resource
 //    private MessageMapper messageMapper;
 
+    /**
+     * 消息的最大重试次数
+     */
     @Value("${app.rabbitmq.retry.max-retry-times}")
     private int maxRetryTimes;
 
+    /**
+     * 每次重试时间间隔
+     */
     @Value("${app.rabbitmq.retry.retry-interval}")
     private Duration retryInterval;
 
@@ -49,11 +54,6 @@ public class BeanEnhance implements BeanPostProcessor {
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 
-        if (CachingConnectionFactory.class.equals(bean.getClass())) {
-            //设置消费者在断开与RabbitMQ的连接之后自动重新连接
-            ((CachingConnectionFactory) bean).getRabbitConnectionFactory().setAutomaticRecoveryEnabled(true);
-        }
-
         //增强RabbitTemplate
         if (RabbitTemplate.class.equals(bean.getClass())) {
             //消息投递成功与否的监听，可以用来保证消息100%投递到rabbitMQ。（如果某条消息（通过id判定)在一定时间内未收到该回调，则重发该消息)
@@ -61,14 +61,17 @@ public class BeanEnhance implements BeanPostProcessor {
             ((RabbitTemplate) bean).setConfirmCallback((correlationData, ack, cause) -> {
                 String correlationDataId = correlationData.getId();
                 if (ack) {
+                    //ACK
                     log.debug("消息[{}]投递成功，将DB中的消息状态设置为投递成功", correlationDataId);
                     ApplicationContextHolder.getBean(MessageMapper.class).update(null,
                             Wrappers.<Message>lambdaUpdate()
                                     .set(Message::getStatus, MessageStatusEnum.SUCCESS.getStatus())
+                                    .set(Message::getUpdateDateTime, LocalDateTime.now(ZoneOffset.ofHours(8)))
                                     .eq(Message::getId, correlationDataId)
                     );
                 } else {
                     log.debug("消息[{}]投递失败,cause:{}", correlationDataId, cause);
+                    //NACK，消息重发
                     ApplicationContextHolder.getBean(BeanEnhance.class).reSend(correlationDataId);
                 }
             });
@@ -87,6 +90,11 @@ public class BeanEnhance implements BeanPostProcessor {
     }
 
 
+    /**
+     * NACK时进行消息重发
+     *
+     * @param correlationDataId
+     */
     @Transactional(rollbackFor = Exception.class)
     public void reSend(String correlationDataId) {
         Message message = ApplicationContextHolder.getBean(MessageMapper.class).selectById(correlationDataId);

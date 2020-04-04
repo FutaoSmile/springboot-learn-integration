@@ -1,5 +1,6 @@
 package com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.job;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -24,6 +25,8 @@ import java.time.ZoneOffset;
 import java.util.List;
 
 /**
+ * 扫描数据库中需要重新投递的消息并重新投递
+ *
  * @author futao
  * @date 2020/4/1.
  */
@@ -83,7 +86,7 @@ public class MessageReSendJob extends IJobHandler {
         messages.forEach(message -> {
             if (retryTimes <= message.getRetryTimes()) {
                 //已达到最大投递次数，将消息设置为投递失败
-                messageMapper.update(null, Wrappers.<Message>lambdaUpdate().set(Message::getStatus, MessageStatusEnum.FAIL.getStatus()).eq(Message::getId, message.getId()));
+                messageMapper.update(null, Wrappers.<Message>lambdaUpdate().set(Message::getStatus, MessageStatusEnum.FAIL.getStatus()).set(Message::getUpdateDateTime, LocalDateTime.now(ZoneOffset.ofHours(8))).eq(Message::getId, message.getId()));
             } else {
                 messageReSendJob.reSend(message);
             }
@@ -98,16 +101,20 @@ public class MessageReSendJob extends IJobHandler {
      *
      * @param message
      */
-//    @Transactional(rollbackFor = Exception.class)
     public void reSend(Message message) {
         messageMapper.update(null,
                 Wrappers.<Message>lambdaUpdate()
                         .set(Message::getRetryTimes, message.getRetryTimes() + 1)
                         .set(Message::getNextRetryDateTime, LocalDateTime.now(ZoneOffset.ofHours(8)).plus(retryInterval))
+                        .set(Message::getUpdateDateTime, LocalDateTime.now(ZoneOffset.ofHours(8)))
                         .eq(Message::getId, message.getId())
         );
-        //再次投递
-        rabbitTemplate.convertAndSend(message.getExchangeName(), message.getRoutingKey(), message.getMsgData(), new CorrelationData(message.getId()));
+        try {
+            //再次投递
+            rabbitTemplate.convertAndSend(message.getExchangeName(), message.getRoutingKey(), message.getMsgData(), new CorrelationData(message.getId()));
+        } catch (Exception e) {
+            log.error("消息[{}]投递失败", JSON.toJSONString(message));
+        }
     }
 
     public void jobHandlerInit() {

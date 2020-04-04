@@ -21,6 +21,10 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "xxl.job")
 public class XxlJobConfig {
 
+
+    private final Admin admin = new Admin();
+    private final Executor executor = new Executor();
+
     @Bean
     public XxlJobSpringExecutor xxlJobExecutor(XxlJobConfig xxlJobConfig) {
         log.info(">>>>>>>>>>> xxl-job config init.");
@@ -33,9 +37,6 @@ public class XxlJobConfig {
         xxlJobSpringExecutor.setLogRetentionDays(xxlJobConfig.getExecutor().getLogRetentionDays());
         return xxlJobSpringExecutor;
     }
-
-    private final Admin admin = new Admin();
-    private final Executor executor = new Executor();
 
     @Getter
     @Setter

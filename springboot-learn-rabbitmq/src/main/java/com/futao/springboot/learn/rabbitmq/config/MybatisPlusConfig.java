@@ -17,7 +17,6 @@ import java.time.ZoneOffset;
 @Configuration
 public class MybatisPlusConfig implements MetaObjectHandler {
 
-
     /**
      * 分页插件
      *
