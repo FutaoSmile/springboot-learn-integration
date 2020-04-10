@@ -10,7 +10,6 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
@@ -26,7 +25,7 @@ import java.time.ZoneOffset;
  * @date 2020/3/20.
  */
 @Slf4j
-@Component
+//@Component
 public class BeanEnhance implements BeanPostProcessor {
 
 //    @Resource

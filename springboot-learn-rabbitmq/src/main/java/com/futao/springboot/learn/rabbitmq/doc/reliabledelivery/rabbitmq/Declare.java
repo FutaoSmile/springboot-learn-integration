@@ -3,7 +3,6 @@ package com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.rabbitmq;
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * RabbitMQ队列定义与绑定
@@ -11,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @author futao
  * @date 2020/3/31.
  */
-@Configuration
+//@Configuration
 public class Declare {
 
     @Bean

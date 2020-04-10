@@ -4,9 +4,7 @@ import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * XXL-JOB配置
@@ -17,8 +15,8 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 @Getter
 @Slf4j
-@Configuration
-@ConfigurationProperties(prefix = "xxl.job")
+//@Configuration
+//@ConfigurationProperties(prefix = "xxl.job")
 public class XxlJobConfig {
 
 

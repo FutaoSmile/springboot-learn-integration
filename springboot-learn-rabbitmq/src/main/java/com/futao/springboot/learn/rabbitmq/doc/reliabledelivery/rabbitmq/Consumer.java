@@ -1,14 +1,13 @@
 package com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.rabbitmq;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 /**
  * @author futao
  * @date 2020/3/31.
  */
 @Slf4j
-@Component
+//@Component
 public class Consumer {
 
 //    @Resource
