@@ -2,6 +2,7 @@ package com.futao.springboot.learn.mybatisplus;
 
 import com.futao.springboot.learn.mybatisplus.dao.UserMapper;
 import com.futao.springboot.learn.mybatisplus.service.UserService;
+import com.futao.springboot.learn.mybatisplus.transactiont.service.AService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -21,6 +22,9 @@ public class MybatisPlusApplication implements ApplicationRunner {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
+    @Autowired
+    AService aService;
+
     public static void main(String[] args) {
         SpringApplication.run(MybatisPlusApplication.class, args);
     }
@@ -29,6 +33,8 @@ public class MybatisPlusApplication implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         UserService userService = webApplicationContext.getBean(UserService.class);
         UserMapper userMapper = webApplicationContext.getBean(UserMapper.class);
+        aService.m1();
+
 //        userService.insert(User.builder().name("张三").age(33).birthday(LocalDate.of(1990, 12, 12)).build());
 //        userService.insert(User.builder().name("李四").age(44).birthday(LocalDate.of(1944, 7, 7)).build());
 //        userService.insert(User.builder().name("王二").age(22).birthday(LocalDate.of(1922, 6, 6)).build());
