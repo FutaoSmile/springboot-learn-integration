@@ -4,14 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author futao
  * @date 2020/4/9.
  */
 @Slf4j
-@Configuration
+//@Configuration
 public class AutoAckConsumer {
 
     /**

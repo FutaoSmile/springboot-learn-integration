@@ -4,7 +4,6 @@ import com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.model.User;
 import com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.rabbitmq.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 
@@ -13,7 +12,7 @@ import java.time.LocalDate;
  * @date 2020/4/1.
  */
 @RequestMapping("/user")
-@RestController
+//@RestController
 public class UserController {
 
     @Autowired

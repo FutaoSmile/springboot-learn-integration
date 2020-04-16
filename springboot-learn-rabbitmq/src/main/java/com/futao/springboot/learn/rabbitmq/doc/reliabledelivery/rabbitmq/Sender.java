@@ -9,7 +9,6 @@ import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.time.Duration;
@@ -20,7 +19,7 @@ import java.time.ZoneOffset;
  * @author futao
  * @date 2020/3/31.
  */
-@Component
+//@Component
 public class Sender {
 
     @Value("${app.rabbitmq.retry.retry-interval}")

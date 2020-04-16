@@ -88,7 +88,7 @@ public class Definition {
 
     @Bean
     public Binding orderBinding(
-            @Qualifier("orderExchange") Exchange exchange,
+            @Qualifier("orderDelayExchange") Exchange exchange,
             @Qualifier("orderQueue") Queue queue) {
         return BindingBuilder
                 .bind(queue)

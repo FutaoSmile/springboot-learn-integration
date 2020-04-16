@@ -32,6 +32,7 @@ public class Message extends IdTimeEntity {
     @TableField("msg_data")
     private String msgData;
 
+
     /**
      * 交换机名称
      */

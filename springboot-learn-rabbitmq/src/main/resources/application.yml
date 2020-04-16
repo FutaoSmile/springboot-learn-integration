@@ -9,7 +9,7 @@ spring:
     port: 5672
     username: futao
     password: 123456789
-    virtual-host: deadletter-vh
+    virtual-host: delay-vh
     connection-timeout: 15000
     # 发送确认
     publisher-confirms: true
@@ -29,7 +29,7 @@ spring:
         # 每个队列最大的消费者数量
         max-concurrency: 1
         # 手动签收ACK-那么需要在代码中手动设置ACK
-        acknowledge-mode: auto
+        acknowledge-mode: manual
         retry:
           enabled: true
           # 第一次尝试时间间隔
@@ -60,6 +60,8 @@ logging:
               config: debug
 app:
   rabbitmq:
+    delay:
+      order: 1M
     retry:
       # 消息最大重试次数
       max-retry-times: 5
@@ -67,16 +69,12 @@ app:
       retry-interval: 5s
     # 队列定义
     queue:
-      # 正常业务队列
-      user: user-queue
-      # 死信队列
-      user-dead-letter: user-dead-letter-queue
+      order:
+        delay: order-delay-queue
     # 交换机定义
     exchange:
-      # 正常业务交换机
-      user: user-exchange
-      # 死信交换机
-      common-dead-letter: common-dead-letter-exchange
+      order:
+        delay: order-delay-exchange
 
 xxl:
   job:

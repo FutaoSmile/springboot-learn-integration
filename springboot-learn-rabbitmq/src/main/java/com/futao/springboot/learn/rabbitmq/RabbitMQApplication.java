@@ -23,7 +23,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author futao
  * @date 2020/3/14.
  */
-@MapperScan({"com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.mapper"})
+@MapperScan({"com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.mapper", "com.futao.springboot.learn.rabbitmq.doc.delaymessage.mapper"})
 @SpringBootApplication
 public class RabbitMQApplication {
     public static void main(String[] args) {
