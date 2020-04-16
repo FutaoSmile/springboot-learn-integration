@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -16,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author futao
  * @date 2020/3/16.
  */
-@Component
+//@Component
 public class SetTest implements ApplicationRunner {
 
     @Autowired
