@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: springboot-learn-admin-server
+server:
+  port: 9999

@@ -57,12 +57,27 @@
         <module>springboot-learn-es</module>
         <module>springboot-learn-solr</module>
         <module>springboot-learn-spring</module>
+        <module>springboot-learn.admin-server</module>
         <!--        <module>learn-kit</module>-->
     </modules>
 
     <!--引入SpringBootParent的第二种方式-->
     <dependencyManagement>
         <dependencies>
+            <!-- https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-starter-server -->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>2.1.6</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>2.1.6</version>
+            </dependency>
+
+
             <!--            <dependency>-->
             <!--                <groupId>org.springframework.boot</groupId>-->
             <!--                <artifactId>spring-boot-starter-parent</artifactId>-->
