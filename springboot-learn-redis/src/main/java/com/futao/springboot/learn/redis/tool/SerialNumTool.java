@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -21,8 +20,9 @@ import java.util.concurrent.Executors;
  * @date 2020/4/20.
  */
 @Slf4j
-@Component
+//@Component
 public class SerialNumTool implements ApplicationRunner {
+
 
     @Autowired
     private StringRedisTemplate redisTemplate;

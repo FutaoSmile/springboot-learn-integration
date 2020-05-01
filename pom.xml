@@ -58,6 +58,7 @@
         <module>springboot-learn-solr</module>
         <module>springboot-learn-spring</module>
         <module>springboot-learn.admin-server</module>
+        <module>springboot-learn-event</module>
         <!--        <module>learn-kit</module>-->
     </modules>
 

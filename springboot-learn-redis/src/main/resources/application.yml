@@ -5,8 +5,8 @@ spring:
   application:
     name: learn-redis
   redis:
-    host: localhost
-    port: 6379
+    #    host: localhost
+    #    port: 6379
     database: 1
     jedis:      #使用的是jedis（或者lettuce）
       pool:
@@ -14,3 +14,5 @@ spring:
         max-idle: 8       #最大空闲连接数
         min-idle: 0       #最小空闲连接数
         max-wait: -1ms    #最大阻塞时间（-1没有限制）
+    cluster:
+      nodes: 127.0.0.1:7000,127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005
