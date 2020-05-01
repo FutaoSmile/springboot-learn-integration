@@ -6,6 +6,7 @@ import com.futao.springboot.learn.event.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.Async;
 
 /**
  * @author futao
@@ -15,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class InitUserScore implements ApplicationListener<UserRegisterEvent> {
 
+    @Async
     @Override
     public void onApplicationEvent(UserRegisterEvent event) {
         User source = event.getSource();
