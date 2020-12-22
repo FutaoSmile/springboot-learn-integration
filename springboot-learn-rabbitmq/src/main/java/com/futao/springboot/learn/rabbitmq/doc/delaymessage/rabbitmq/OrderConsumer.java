@@ -10,12 +10,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.concurrent.TimeUnit;
+
+import static com.caucho.services.server.ServiceContext.getRequest;
 
 /**
  * 延迟订单监听
@@ -40,6 +45,8 @@ public class OrderConsumer {
      */
     @RabbitListener(queues = "${app.rabbitmq.queue.order.delay}")
     public void consumer(String orderId, Channel channel, Message message) throws IOException, InterruptedException {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+
         log.info("消费者接收到延迟订单[{}]", orderId);
         //将订单状态设置成已超时过期
         orderMapper.update(null,

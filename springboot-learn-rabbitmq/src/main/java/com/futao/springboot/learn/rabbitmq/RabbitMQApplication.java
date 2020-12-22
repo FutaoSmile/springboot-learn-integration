@@ -1,8 +1,16 @@
 package com.futao.springboot.learn.rabbitmq;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.amqp.core.Queue;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.WebApplicationContext;
+
+import java.util.Map;
 
 /**
  * rabbitMQ中上一次unAck的消息，会在下一次消费者连上的时候再次投递，再次重新消费
@@ -25,8 +33,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @MapperScan({"com.futao.springboot.learn.rabbitmq.doc.reliabledelivery.mapper", "com.futao.springboot.learn.rabbitmq.doc.delaymessage.mapper"})
 @SpringBootApplication
-public class RabbitMQApplication {
+public class RabbitMQApplication implements ApplicationRunner {
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
     public static void main(String[] args) {
         SpringApplication.run(RabbitMQApplication.class, args);
+    }
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        Map<String, Queue> beansOfType = applicationContext.getBeansOfType(Queue.class);
     }
 }
