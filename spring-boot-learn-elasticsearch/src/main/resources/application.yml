@@ -1,0 +1,10 @@
+server:
+  port: 6666
+spring:
+  application:
+    name: spring-boot-learn-elasticsearch
+  elasticsearch:
+    rest:
+      uris:
+      username:
+      password:
