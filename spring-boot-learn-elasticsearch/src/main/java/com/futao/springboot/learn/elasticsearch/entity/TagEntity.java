@@ -1,16 +1,19 @@
 package com.futao.springboot.learn.elasticsearch.entity;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Parent;
 
 /**
  * @author ft
  * @date 2021/1/14
  */
-@Document(indexName = Tag.ES_INDEX_NAME)
-public class Tag {
+@Getter
+@Setter
+@Document(indexName = TagEntity.ES_INDEX_NAME)
+public class TagEntity extends IdTimeEntity {
     public static final String ES_INDEX_NAME = "es_tag";
 
-    @Parent()
-    private String userId;
+    private String name;
+    private Integer type;
 }

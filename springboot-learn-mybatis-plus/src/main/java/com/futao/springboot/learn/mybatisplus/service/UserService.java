@@ -1,5 +1,6 @@
 package com.futao.springboot.learn.mybatisplus.service;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.futao.springboot.learn.mybatisplus.dao.UserMapper;
 import com.futao.springboot.learn.mybatisplus.entity.User;
@@ -14,6 +15,8 @@ public class UserService extends ServiceImpl<UserMapper, User> {
 
 
     public void insert(User user) {
+        Wrappers.<User>lambdaQuery()
+                .eq(User::getAge, 1)
         save(user);
     }
 
