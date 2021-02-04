@@ -1,6 +1,6 @@
 package com.futao.springbootlearn.thymeleaf;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.web.client.RestTemplate;
 
 /**

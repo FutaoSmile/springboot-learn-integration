@@ -33,14 +33,14 @@ public class UserService {
         UserEntity userEntity = new UserEntity();
         UserEntity save = userRepository.save(userEntity);
         UserEntity userEntity1 = elasticsearchRestTemplate.get("1", UserEntity.class);
-        elasticsearchRestTemplate.search(CriteriaQuery.fromQuery(new CriteriaQuery(new Criteria().and(new Field))), UserEntity.class);
+//        elasticsearchRestTemplate.search(CriteriaQuery.fromQuery(new CriteriaQuery(new Criteria().and(new Field))), UserEntity.class);
         IndexQueryBuilder indexQueryBuilder = new IndexQueryBuilder();
         IndexQuery indexQuery = indexQueryBuilder.build();
-        elasticsearchOperations.index(indexQuery, IndexCoordinates.of())
+//        elasticsearchOperations.index(indexQuery, IndexCoordinates.of())
     }
 
     public void getColName(Function<Object, String> getUsername) {
-        getUsername.apply()
+//        getUsername.apply()
     }
 
 }

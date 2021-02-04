@@ -16,7 +16,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 @Getter
 @Setter
 @Builder
-@Document(indexName = "", type = "user")
+@Document(indexName = "")
 public class User {
 
     @Tolerate

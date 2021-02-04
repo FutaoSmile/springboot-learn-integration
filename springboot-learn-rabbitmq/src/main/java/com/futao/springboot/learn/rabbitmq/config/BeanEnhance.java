@@ -52,7 +52,7 @@ public class BeanEnhance implements BeanPostProcessor {
 
 
     @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 
         //增强RabbitTemplate
         if (RabbitTemplate.class.equals(bean.getClass())) {

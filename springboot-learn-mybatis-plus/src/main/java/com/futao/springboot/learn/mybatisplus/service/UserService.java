@@ -16,7 +16,7 @@ public class UserService extends ServiceImpl<UserMapper, User> {
 
     public void insert(User user) {
         Wrappers.<User>lambdaQuery()
-                .eq(User::getAge, 1)
+                .eq(User::getAge, 1);
         save(user);
     }
 
