@@ -29,13 +29,13 @@ public class MybatisPlusConfig implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        setFieldValByName("createBy", "sysC", metaObject);
+        setFieldValByName("createBy", null, metaObject);
         setFieldValByName("createDateTime", LocalDateTime.now(), metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        setFieldValByName("updateBy", "sysU", metaObject);
+        setFieldValByName("updateBy", null, metaObject);
         setFieldValByName("updateDateTime", LocalDateTime.now(), metaObject);
     }
 }

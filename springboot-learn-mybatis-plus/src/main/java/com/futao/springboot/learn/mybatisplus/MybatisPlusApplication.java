@@ -31,9 +31,9 @@ public class MybatisPlusApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        UserService userService = webApplicationContext.getBean(UserService.class);
-        UserMapper userMapper = webApplicationContext.getBean(UserMapper.class);
-        aService.m1();
+//        UserService userService = webApplicationContext.getBean(UserService.class);
+//        UserMapper userMapper = webApplicationContext.getBean(UserMapper.class);
+//        aService.m1();
 
 //        userService.insert(User.builder().name("张三").age(33).birthday(LocalDate.of(1990, 12, 12)).build());
 //        userService.insert(User.builder().name("李四").age(44).birthday(LocalDate.of(1944, 7, 7)).build());

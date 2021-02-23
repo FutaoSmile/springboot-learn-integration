@@ -2,9 +2,9 @@ package com.futao.springboot.learn.mybatisplus.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import com.futao.springboot.learn.mybatisplus.entity.enums.UserGenderEnum;
+import com.futao.springboot.learn.mybatisplus.typehandlers.EnumTypeHandler;
+import lombok.*;
 import lombok.experimental.Tolerate;
 
 import java.io.IOException;
@@ -21,12 +21,10 @@ import java.util.stream.Stream;
 @Builder
 @Getter
 @Setter
-@TableName("user")
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName("plus_user")
 public class User extends IdTimeEntity<User> {
-
-    @Tolerate
-    public User() {
-    }
 
     @TableField(value = "full_name")
     private String fullName;
@@ -36,6 +34,12 @@ public class User extends IdTimeEntity<User> {
 
     @TableField(value = "birthday")
     private LocalDate birthday;
+
+    /**
+     * 性别
+     */
+    @TableField(typeHandler = EnumTypeHandler.class)
+    private UserGenderEnum gender;
 
     /**
      * JDK8中读取文件的方法

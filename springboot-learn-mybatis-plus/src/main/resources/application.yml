@@ -4,14 +4,15 @@ spring:
   application:
     name: learn-mybatis-plus
   datasource:
-    url: jdbc:mysql://localhost:3306/springboot_learn_persistent_mybatis_plus?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/springboot_learn_persistent_mybatis_plus?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
     username: root
-    password: 123456789
+    password: 123456nobug.
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*Mapper.xml
   configuration:
     map-underscore-to-camel-case: true
+  type-handlers-package: com.futao.springboot.learn.mybatisplus.typehandlers
 
 logging:
   level:

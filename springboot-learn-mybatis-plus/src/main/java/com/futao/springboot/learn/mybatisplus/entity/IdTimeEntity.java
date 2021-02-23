@@ -18,17 +18,17 @@ import java.time.LocalDateTime;
 @Setter
 public class IdTimeEntity<T extends Model<?>> extends Model<T> {
 
-    @TableId(value = "id", type = IdType.UUID)
-    private String id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     @TableField(value = "create_by", fill = FieldFill.INSERT)
-    private String createBy;
+    private Integer createBy;
 
     @TableField(value = "create_date_time", fill = FieldFill.INSERT)
     private LocalDateTime createDateTime;
 
     @TableField(value = "update_by", fill = FieldFill.UPDATE)
-    private String updateBy;
+    private Integer updateBy;
 
     @TableField(value = "update_date_time", fill = FieldFill.UPDATE)
     private LocalDateTime updateDateTime;
