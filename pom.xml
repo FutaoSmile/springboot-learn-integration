@@ -26,7 +26,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <version.mybatis>2.0.0</version.mybatis>
         <version.druid>1.1.18</version.druid>
-        <version.fastjson>1.2.56</version.fastjson>
+        <version.fastjson>1.2.83</version.fastjson>
         <version.guava>23.0</version.guava>
         <version.sockjs>1.1.2</version.sockjs>
         <version.stomp>2.3.3</version.stomp>
